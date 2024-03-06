@@ -1,0 +1,27 @@
+name: commiter_detail
+on: 
+  workflow_dispatch:
+  schedule: 
+    - cron: "0 0 * * 6"
+
+jobs:
+  report_generation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v2
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with: 
+          python-version: 3.8
+      - name: Install Dependencies
+      - run: |
+          python -m pip install --upgrade pip
+          if [-f filename.txt]; then pip install -r filename.txt; fi
+      - name: generate report using python script
+        working-directory: ./src
+        run: |
+          python AzureGitRepoReport.py -f orglist -t token
+      - name: Archive Artifacts
+          
+  
