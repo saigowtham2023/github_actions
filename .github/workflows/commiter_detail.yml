@@ -22,6 +22,10 @@ jobs:
         working-directory: ./src
         run: |
           python AzureGitRepoReport.py -f orglist -t token
-      - name: Archive Artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@V4
+        with:
+          name: commiter_report_artifactory
+          path: ./src
           
   
