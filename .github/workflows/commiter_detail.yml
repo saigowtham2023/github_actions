@@ -2,7 +2,7 @@ name: Azure Git Repo Commiter Detail
 on: 
   workflow_dispatch:
   schedule: 
-    - cron: "0 0 * * 6"
+    - cron: "0 0 * * 6" # Runs at 00:00 only on saturday
 
 jobs:
   report_generation:
@@ -19,8 +19,11 @@ jobs:
           python -m pip install --upgrade pip
           if [-f filename.txt]; then pip install -r filename.txt; fi
       - name: generate report using python script
+
+      # create a folder named AzureGitRepoReport with  AzureGitRepoReport.py
         working-directory: ./src/AzureGitRepoReport
         run: python AzureGitRepoReport.py -f orglist -t ${{secreats.Azure_Git_Repo_Report}}
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@V4
         with:
