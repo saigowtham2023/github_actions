@@ -1,8 +1,5 @@
 name: Azure Git Repo Commiter Detail
-on: 
-  workflow_dispatch:
-  schedule: 
-    - cron: "0 0 * * 6" # Runs at 00:00 only on saturday
+on: workflow_dispatch
 
 jobs:
   report_generation:
